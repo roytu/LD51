@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -11,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     private GameObject normalWhackerPrefab;
 
+    [NonSerialized]
     public GameObject normalWeedPrefab;
 
     private float gameTime = 0;
@@ -20,6 +23,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private TMPro.TMP_Text uiTimeText;
+    [SerializeField]
+    private TMPro.TMP_Text uiWeedCountText;
+
+    [SerializeField]
+    private GameObject loseCanvas;
+
+    private bool isPlaying = true;
 
     void Start()
     {
@@ -30,6 +40,7 @@ public class GameManager : MonoBehaviour
         gameTime = 0;
         waveTime = 10f;
         wave = 0;
+        isPlaying = true;
 
         Player player = FindObjectOfType<Player>();
         player.SetWhacker(normalWhacker);
@@ -37,9 +48,18 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        HandleWave();
-        gameTime += Time.deltaTime;
-        uiTimeText.SetText($"Time: {gameTime}");
+        if (isPlaying) {
+            HandleWave();
+            gameTime += Time.deltaTime;
+            uiTimeText.SetText($"Time: {gameTime}");
+
+            // Count weeds
+            GameObject[] weeds = GameObject.FindGameObjectsWithTag("Weed");
+            if (weeds.Length > 50) {
+                Lose();
+            }
+            uiWeedCountText.SetText($"Weeds: {weeds.Length} / 50");
+        }
     }
 
     void HandleWave() {
@@ -63,19 +83,20 @@ public class GameManager : MonoBehaviour
             Vector3 position = GetRandomEnemySpawn();
             GameObject normalWeedGO = Instantiate<GameObject>(normalWeedPrefab, position, Quaternion.identity);
         }
+
     }
 
     public Vector3 GetRandomEnemySpawn() {
         // Find a location for an enemy to spawn
-        float x = Random.Range(-50f, 50f);
-        float y = Random.Range(-25f, 25f);
+        float x = UnityEngine.Random.Range(-50f, 50f);
+        float y = UnityEngine.Random.Range(-25f, 25f);
         return new Vector3(x, y, 0);
     }
 
     public Vector3 GetRandomLocation() {
         // Find a location for an enemy to spawn
-        float x = Random.Range(-50f, 50f);
-        float y = Random.Range(-25f, 25f);
+        float x = UnityEngine.Random.Range(-50f, 50f);
+        float y = UnityEngine.Random.Range(-25f, 25f);
         return new Vector3(x, y, 0);
     }
 
@@ -96,6 +117,23 @@ public class GameManager : MonoBehaviour
         foreach (var asyncOperationHandle in asyncOperationHandles) {
             Addressables.Release(asyncOperationHandle);
         }
+    }
+
+    void Lose() {
+        loseCanvas.SetActive(true);
+        isPlaying = false;
+    }
+
+    void Restart() {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void OnPlayAgainButtonPressed() {
+        Restart();
+    }
+
+    public void OnMainMenuButtonPressed() {
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
