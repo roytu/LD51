@@ -29,6 +29,10 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/Hitboxes/NormalWhackerHitbox.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 64434b5e453d6f349aaefcc7086f970f
+    m_Address: Assets/Prefabs/Weeds/NormalWeed.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 03eeb632e675c444a82180608e2971ce, type: 2}
   m_SchemaSet:
