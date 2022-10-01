@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 012ac39596874394bbc9f7dd7d728fbb
+  m_SerializeEntries:
+  - m_GUID: 9c9b1b9ed24670547892809f87430939
+    m_Address: Assets/Prefabs/DirtPatch.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6bd67b036e8327c4098aa067f6b8f5ff
+    m_Address: Assets/Prefabs/Whackers/NormalWhacker.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f04a1ccb8780b0448a17c0e35984796b
+    m_Address: Assets/Prefabs/Hitboxes/NormalWhackerHitbox.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 03eeb632e675c444a82180608e2971ce, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b6020330f3578234a9c0b9db530ba6c5, type: 2}
+    - {fileID: 11400000, guid: 25b01f81652431e428db0253a5350583, type: 2}
