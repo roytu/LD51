@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     private GameObject normalWhackerPrefab;
 
-    private GameObject normalWeedPrefab;
+    public GameObject normalWeedPrefab;
 
     private float gameTime = 0;
 
@@ -52,6 +52,12 @@ public class GameManager : MonoBehaviour
     }
 
     void SpawnWave() {
+        // Handle OnNewWave for existing weeds
+        GameObject[] weeds = GameObject.FindGameObjectsWithTag("Weed");
+        foreach (GameObject weed in weeds) {
+            weed.GetComponent<Weed>().OnNewWave();
+        }
+
         // TODO ramp up difficulty
         for (int i = 0; i < 10; i++) {
             Vector3 position = GetRandomEnemySpawn();
@@ -59,13 +65,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    Vector3 GetRandomEnemySpawn() {
+    public Vector3 GetRandomEnemySpawn() {
         // Find a location for an enemy to spawn
-        float x = Random.Range(-100f, 100f);
-        float y = Random.Range(-100f, 100f);
+        float x = Random.Range(-50f, 50f);
+        float y = Random.Range(-25f, 25f);
         return new Vector3(x, y, 0);
     }
 
+    public Vector3 GetRandomLocation() {
+        // Find a location for an enemy to spawn
+        float x = Random.Range(-50f, 50f);
+        float y = Random.Range(-25f, 25f);
+        return new Vector3(x, y, 0);
+    }
 
     // Addressables stuff
     GameObject LoadPrefab(object key) {

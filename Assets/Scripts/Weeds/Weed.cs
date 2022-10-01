@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,27 @@ public abstract class Weed : MonoBehaviour
 
     private float whiteTimer = 0f;
     private new SpriteRenderer renderer;
+
+    public StateMachine<Weed> stateMachine;
+    [NonSerialized]
+    public Animator animator;
+    [NonSerialized]
+    public Rigidbody2D rigidbody;
+
+    protected void Awake() {
+        animator = GetComponent<Animator>();
+        rigidbody = GetComponent<Rigidbody2D>();
+
+        stateMachine = new StateMachine<Weed>();
+        stateMachine.Awake();
+        // The inheriting weed is responsible for running stateMachine.Configure(new MainState()) here.
+
+    }
+
+    void FixedUpdate() {
+        stateMachine.Update();
+    }
+
 
     void Start() {
         SetInitialHealth();
@@ -38,6 +60,8 @@ public abstract class Weed : MonoBehaviour
     public void Hit(int damage) {
         TakeDamage(damage);
     }
+
+    public virtual void OnNewWave() {}
 
     public abstract void SetInitialHealth();
 }

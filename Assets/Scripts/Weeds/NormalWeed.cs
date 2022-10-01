@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class NormalWeed : Weed
 {
+
+    protected new void Awake() {
+        base.Awake();
+
+        stateMachine.Configure(this, new EntityStates.NormalWeed.MainState());
+    }
+
     public override void DoAbility() {
         // Do nothing
 
@@ -12,5 +19,13 @@ public class NormalWeed : Weed
     public override void SetInitialHealth()
     {
         health = 10;
+    }
+
+    public override void OnNewWave() {
+        base.OnNewWave();
+
+        Debug.Log("MITOSIS");
+
+        stateMachine.Configure(this, new EntityStates.NormalWeed.MitosisState());
     }
 }
