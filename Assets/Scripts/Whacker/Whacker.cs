@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public abstract class Whacker : MonoBehaviour
 {
     public StateMachine<Whacker> stateMachine;
 
+    [NonSerialized]
     public Animator animator;
 
     public virtual void Whack() { }
@@ -21,6 +23,15 @@ public abstract class Whacker : MonoBehaviour
 
     void FixedUpdate() {
         stateMachine.Update();
+    }
+
+    public Vector2 GetAimDirection() {
+        CameraManager cameraManager = FindObjectOfType<CameraManager>();
+        Vector2 myPos = new Vector2(
+            stateMachine.owner.transform.position.x,
+            stateMachine.owner.transform.position.y
+        );
+        return (cameraManager.GetMousePos() - myPos);
     }
 
 

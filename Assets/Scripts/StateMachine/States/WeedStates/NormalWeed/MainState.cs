@@ -8,7 +8,7 @@ namespace EntityStates.NormalWeed {
 public class MainState : BaseState<global::Weed>
 {
 
-    private Vector3 target;
+    public Vector3 target;
     private float maxVelocity = 1f;
     private float walkForce = 10f;
     private float timeTillRetarget = 0f;
@@ -25,11 +25,15 @@ public class MainState : BaseState<global::Weed>
 
     public override void Execute(global::Weed weed) {
         // Move towards target
-        Vector3 delta = weed.transform.position - target;
+        Vector3 delta = target - weed.transform.position;
+        delta.z = 0;
+        delta.Normalize();
         Vector3 force = delta * walkForce;
-        weed.rigidbody.AddForce(force);
+        weed.rigidbody.AddForce(force, ForceMode2D.Force);
         if (weed.rigidbody.velocity.magnitude > maxVelocity) {
-            weed.rigidbody.velocity = weed.rigidbody.velocity.normalized * maxVelocity;
+            // Soft relax max velocity to allow for large impulses
+            Vector2 clampedVelocity = weed.rigidbody.velocity.normalized * maxVelocity;
+            weed.rigidbody.velocity = (clampedVelocity + weed.rigidbody.velocity * 3f) / 4f;
         }
 
         timeTillRetarget -= Time.deltaTime;
@@ -39,9 +43,9 @@ public class MainState : BaseState<global::Weed>
     }
 
     private void Retarget() {
-        timeTillRetarget = Random.Range(6f, 12f);
+        timeTillRetarget = Random.Range(3f, 5f);
         GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-        target = gameManager.GetRandomLocation();
+        target = gameManager.GetRandomLocation() / 10f;
     }
 
 

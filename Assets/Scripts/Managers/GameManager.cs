@@ -11,11 +11,6 @@ public class GameManager : MonoBehaviour
 {
     private List<AsyncOperationHandle> asyncOperationHandles;
 
-    private GameObject normalWhackerPrefab;
-
-    [NonSerialized]
-    public GameObject normalWeedPrefab;
-
     private float gameTime = 0;
 
     private float waveTime = 0;
@@ -34,8 +29,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // Give the player a starting whacker
-        GameObject normalWhackerGO = Instantiate<GameObject>(normalWhackerPrefab, Vector3.zero, Quaternion.identity);
-        NormalWhacker normalWhacker = normalWhackerGO.GetComponent<NormalWhacker>();
+        GameObject defaultWhackerGO = Instantiate<GameObject>(PrefabsManager.getInstance().topoWhackerPrefab, Vector3.zero, Quaternion.identity);
+        Whacker defaultWhacker = defaultWhackerGO.GetComponent<Whacker>();
 
         gameTime = 0;
         waveTime = 10f;
@@ -43,7 +38,9 @@ public class GameManager : MonoBehaviour
         isPlaying = true;
 
         Player player = FindObjectOfType<Player>();
-        player.SetWhacker(normalWhacker);
+        player.SetWhacker(defaultWhacker);
+
+        SpawnWave();
     }
 
     void Update()
@@ -81,7 +78,7 @@ public class GameManager : MonoBehaviour
         // TODO ramp up difficulty
         for (int i = 0; i < 10; i++) {
             Vector3 position = GetRandomEnemySpawn();
-            GameObject normalWeedGO = Instantiate<GameObject>(normalWeedPrefab, position, Quaternion.identity);
+            Instantiate<GameObject>(PrefabsManager.getInstance().normalWeedPrefab, position, Quaternion.identity);
         }
 
     }
@@ -95,28 +92,9 @@ public class GameManager : MonoBehaviour
 
     public Vector3 GetRandomLocation() {
         // Find a location for an enemy to spawn
-        float x = UnityEngine.Random.Range(-50f, 50f);
-        float y = UnityEngine.Random.Range(-25f, 25f);
+        float x = UnityEngine.Random.Range(-40f, 40f);
+        float y = UnityEngine.Random.Range(-15f, 15f);
         return new Vector3(x, y, 0);
-    }
-
-    // Addressables stuff
-    GameObject LoadPrefab(object key) {
-        var handle = Addressables.LoadAssetAsync<GameObject>(key);
-        asyncOperationHandles.Add(handle);
-        return handle.WaitForCompletion();
-    }
-
-    void Awake() {
-        asyncOperationHandles = new List<AsyncOperationHandle>();
-        normalWhackerPrefab = LoadPrefab("Assets/Prefabs/Whackers/NormalWhacker.prefab");
-        normalWeedPrefab = LoadPrefab("Assets/Prefabs/Weeds/NormalWeed.prefab");
-    }
-
-    void OnDisable() {
-        foreach (var asyncOperationHandle in asyncOperationHandles) {
-            Addressables.Release(asyncOperationHandle);
-        }
     }
 
     void Lose() {

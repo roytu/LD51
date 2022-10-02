@@ -13,13 +13,17 @@ public class MainState : BaseState<Whacker>
         t = 0;
 
         // Spawn a basic hitbox
-        global::NormalWhacker normalWhacker = (global::NormalWhacker)whacker;
-        Vector3 position = normalWhacker.transform.position;
-        GameObject.Instantiate(normalWhacker.normalHitboxGO, position, Quaternion.identity);
+        GameObject hitboxGO = GameObject.Instantiate(PrefabsManager.getInstance().normalWhackerHitboxPrefab, whacker.transform.position, Quaternion.identity);
+        Hitbox hitbox = hitboxGO.GetComponent<Hitbox>();
+        float r = Random.Range(0, 360) * Mathf.Deg2Rad;
+        hitbox.knockbackDirection = new Vector2(
+            Mathf.Cos(r),
+            Mathf.Sin(r)
+        );
     }
     public override void Execute(Whacker whacker) {
         const float PERIOD = 0.3f; 
-        float rotAmt = 120f * Mathf.PI / 2;
+        float rotAmt = 120f * Mathf.Deg2Rad;
         float rotVal = ((t % PERIOD) - Mathf.Abs((t % PERIOD) - (PERIOD / 2))) / PERIOD * rotAmt;
 
         whacker.gameObject.transform.localEulerAngles = new Vector3(0, 0, rotVal);

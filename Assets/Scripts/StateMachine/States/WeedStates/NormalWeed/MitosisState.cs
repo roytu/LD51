@@ -20,9 +20,8 @@ public class MitosisState : BaseState<global::Weed>
     }
     public override void Exit(global::Weed weed) {
         // Spawn another weed next to you
-        GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
         Vector3 newPosition = weed.transform.position + new Vector3(0.5f, 0, 0);
-        GameObject.Instantiate(gameManager.normalWeedPrefab, newPosition, Quaternion.identity);
+        GameObject.Instantiate(PrefabsManager.getInstance().normalWeedPrefab, newPosition, Quaternion.identity);
         weed.animator.SetTrigger("exitMitosis");
     }
 

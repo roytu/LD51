@@ -24,8 +24,6 @@ public class NormalWeed : Weed
     public override void OnNewWave() {
         base.OnNewWave();
 
-        Debug.Log("MITOSIS");
-
         stateMachine.Configure(this, new EntityStates.NormalWeed.MitosisState());
     }
 }
