@@ -19,12 +19,19 @@ public class MainState : BaseState<Whacker>
             Random.Range(-0.3f, 0.3f)
         );
         Vector2 moleDirection = (whacker.GetAimDirection().normalized + randomDirection).normalized;
-        float moleSpeed = 3f;
+        float moleSpeed = 8f;
 
         GameObject projectileGO = GameObject.Instantiate(PrefabsManager.getInstance().topoWhackerProjectilePrefab, whacker.transform.position, Quaternion.identity);
         TopoWhackerProjectile projectile = projectileGO.GetComponent<TopoWhackerProjectile>();
         projectile.direction = moleDirection;
         projectile.speed = moleSpeed;
+
+        // Apply knockback to player
+        Player player = GameObject.FindObjectOfType<Player>();
+        player.rigidbody.AddForce(-whacker.GetAimDirection().normalized * 300f, ForceMode2D.Impulse);
+
+        CameraManager cameraManager = GameObject.FindObjectOfType<CameraManager>();
+        cameraManager.AddScreenshake(0.04f);
 
     }
     public override void Execute(Whacker whacker) {

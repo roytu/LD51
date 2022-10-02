@@ -43,7 +43,7 @@ public abstract class Weed : MonoBehaviour
         whiteTimer = 0.05f;
         health -= damage;
         if (health <= 0) {
-            Destroy(gameObject);
+            Die();
         }
     }
 
@@ -59,6 +59,13 @@ public abstract class Weed : MonoBehaviour
 
     public void Hit(int damage) {
         TakeDamage(damage);
+    }
+
+    public void Die() {
+        CameraManager cameraManager = FindObjectOfType<CameraManager>();
+        cameraManager.SetZoomTarget(transform.position);
+
+        Destroy(gameObject);
     }
 
     public virtual void OnNewWave() {}

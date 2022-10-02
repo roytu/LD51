@@ -7,7 +7,7 @@ public abstract class GenericMainState : PlayerBaseState
 {
 
     private const float WALK_SPEED = 1000f;
-    private const float MAX_WALK_SPEED = 10f;
+    private const float MAX_WALK_SPEED = 20f;
 
     public GenericMainState() {
     }
@@ -38,8 +38,13 @@ public abstract class GenericMainState : PlayerBaseState
         Rigidbody2D rigidbody = player.GetComponent<Rigidbody2D>();
         rigidbody.AddForce(moveForce);
 
+        // Softmax velocity
+
+        // Soft relax max velocity to allow for large impulses
         if (rigidbody.velocity.magnitude > MAX_WALK_SPEED) {
-            rigidbody.velocity = rigidbody.velocity.normalized * MAX_WALK_SPEED;
+            Vector2 clampedVelocity = rigidbody.velocity.normalized * MAX_WALK_SPEED;
+            rigidbody.velocity = (clampedVelocity + rigidbody.velocity * 3f) / 4f;
+            //rigidbody.velocity = rigidbody.velocity.normalized * MAX_WALK_SPEED;
         }
 
         // Update animator

@@ -11,10 +11,11 @@ public class TopoWhackerProjectile : MonoBehaviour
 
     private float t = 0;
     private float timeTillNextHitbox = 0f;
-    private float DELAY_TILL_HITBOX = 0.2f;
+    private float DELAY_TILL_HITBOX = 0.05f;
 
     void Start()
     {
+        t = 0;
         
     }
 
@@ -22,7 +23,7 @@ public class TopoWhackerProjectile : MonoBehaviour
     void Update()
     {
         // Move the "mole"
-        Vector2 moleVelocity = direction.normalized * speed * Time.fixedDeltaTime;
+        Vector2 moleVelocity = direction.normalized * (speed + Random.Range(-2f, 2f)) * Time.fixedDeltaTime;
         transform.position += new Vector3(
             moleVelocity.x,
             moleVelocity.y,
@@ -37,10 +38,21 @@ public class TopoWhackerProjectile : MonoBehaviour
             timeTillNextHitbox = DELAY_TILL_HITBOX;
         }
 
+        // Die after X seconds
+        t += Time.deltaTime;
+        if (t > 3f) {
+            Destroy(gameObject);
+        }
+
     }
 
     private void SpawnHitbox() {
-        GameObject hitboxGO = GameObject.Instantiate(PrefabsManager.getInstance().topoWhackerProjectileHitboxPrefab, transform.position, Quaternion.identity);
+        Vector3 spawnPosition = transform.position + new Vector3(
+            Random.Range(-0.5f, 0.5f),
+            Random.Range(-0.5f, 0.5f),
+            0
+        );
+        GameObject hitboxGO = GameObject.Instantiate(PrefabsManager.getInstance().topoWhackerProjectileHitboxPrefab, spawnPosition, Quaternion.identity);
         Hitbox hitbox = hitboxGO.GetComponent<Hitbox>();
         float r = Random.Range(0, 360) * Mathf.Deg2Rad;
         hitbox.knockbackDirection = new Vector2(
@@ -48,6 +60,10 @@ public class TopoWhackerProjectile : MonoBehaviour
             Mathf.Sin(r)
         );
         hitbox.knockbackAmount = 10f;
+
+        // Add some screenshake
+        CameraManager cameraManager = FindObjectOfType<CameraManager>();
+        cameraManager.AddScreenshake(0.01f);
     }
 
 

@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     [NonSerialized]
     public InputAction abilitySpecial;
 
-    private Rigidbody2D rigidbody;
+    public Rigidbody2D rigidbody;
 
     public float walkSpeed;
     public float maxWalkSpeed;

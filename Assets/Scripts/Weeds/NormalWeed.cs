@@ -18,7 +18,7 @@ public class NormalWeed : Weed
 
     public override void SetInitialHealth()
     {
-        health = 10;
+        health = 3;
     }
 
     public override void OnNewWave() {
