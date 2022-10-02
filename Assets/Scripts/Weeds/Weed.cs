@@ -62,8 +62,15 @@ public abstract class Weed : MonoBehaviour
     }
 
     public void Die() {
+        // Zoom camera
         CameraManager cameraManager = FindObjectOfType<CameraManager>();
         cameraManager.SetZoomTarget(transform.position);
+
+        // Make splatter
+        // Set depth to somewhere where it draws
+        Vector3 pos = transform.position;
+        pos.z = -75;
+        Instantiate(PrefabsManager.getInstance().splatterPrefab, pos, Quaternion.identity);
 
         Destroy(gameObject);
     }
