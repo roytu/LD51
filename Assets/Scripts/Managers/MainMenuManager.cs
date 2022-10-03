@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
@@ -11,6 +12,11 @@ public class MainMenuManager : MonoBehaviour
     public TMPro.TMP_Text logoMainText;
     public TMPro.TMP_Text logoShadowText;
     public AudioMixer mixer;
+
+    public Slider masterVolumeSlider;
+    public Slider sfxVolumeSlider;
+    public Slider musicVolumeSlider;
+    public Toggle fullscreenCheckbox;
 
     private Vector3 logoMainPos;
     private Vector3 logoShadowPos;
@@ -24,6 +30,30 @@ public class MainMenuManager : MonoBehaviour
         if (logoShadowText != null) {
             logoShadowPos = logoShadowText.rectTransform.localPosition;
         }
+
+        // Set sliders
+        if (masterVolumeSlider != null) {
+            float db;
+            mixer.GetFloat("MasterVolume", out db);
+            float volume = 1f - (db / -80f);
+            masterVolumeSlider.SetValueWithoutNotify(volume);
+        }
+        if (sfxVolumeSlider != null) {
+            float db;
+            mixer.GetFloat("SFXVolume", out db);
+            float volume = 1f - (db / -80f);
+            sfxVolumeSlider.SetValueWithoutNotify(volume);
+        }
+        if (musicVolumeSlider != null) {
+            float db;
+            mixer.GetFloat("MusicVolume", out db);
+            float volume = 1f - (db / -80f);
+            musicVolumeSlider.SetValueWithoutNotify(volume);
+        }
+        if (fullscreenCheckbox != null) {
+            fullscreenCheckbox.SetIsOnWithoutNotify(Screen.fullScreen);
+        }
+
     }
 
     // Update is called once per frame
