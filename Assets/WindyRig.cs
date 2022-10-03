@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
 public class WindyRig : MonoBehaviour
 {
@@ -10,16 +11,20 @@ public class WindyRig : MonoBehaviour
     public GameObject IKTarget;
     private Vector3 origIKTargetPosition;
 
+    private IKManager2D ikManager2D;
+
     void Start()
     {
         origIKTargetPosition = IKTarget.transform.localPosition;
+        ikManager2D = GetComponent<IKManager2D>();
+        ikManager2D.enabled = false;
     }
 
     void Update()
     {
         CameraManager cameraManager = FindObjectOfType<CameraManager>();
         Vector3 newIKTargetLocalPos = Vector3.zero;
-        if (cameraManager.zoomTargetPosition != null && cameraManager.zoomTime < 3f) {
+        if (cameraManager.zoomTargetPosition != null && cameraManager.zoomTime < 1f) {
             // Target last zoom event 
             Vector3 target = new Vector3(
                 cameraManager.zoomTargetPosition.x,
@@ -48,5 +53,13 @@ public class WindyRig : MonoBehaviour
         Vector3 newIKTargetLocalPos = scaledDelta + origIKTargetPosition;
 
         return newIKTargetLocalPos;
+    }
+
+    void OnBecameVisible() {
+        ikManager2D.enabled = true;
+    }
+
+    void OnBecameInvisible() {
+        ikManager2D.enabled = true;
     }
 }

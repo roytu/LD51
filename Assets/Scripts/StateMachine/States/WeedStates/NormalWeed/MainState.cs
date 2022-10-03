@@ -45,7 +45,7 @@ public class MainState : BaseState<global::Weed>
     private void Retarget() {
         timeTillRetarget = Random.Range(3f, 5f);
         GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-        target = gameManager.GetRandomLocation() / 10f;
+        target = gameManager.GetRandomLocation();
     }
 
 

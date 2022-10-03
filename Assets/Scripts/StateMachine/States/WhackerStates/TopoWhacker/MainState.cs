@@ -19,7 +19,7 @@ public class MainState : BaseState<Whacker>
             Random.Range(-0.3f, 0.3f)
         );
         Vector2 moleDirection = (whacker.GetAimDirection().normalized + randomDirection).normalized;
-        float moleSpeed = 8f;
+        float moleSpeed = 18f;
 
         GameObject projectileGO = GameObject.Instantiate(PrefabsManager.getInstance().topoWhackerProjectilePrefab, whacker.transform.position, Quaternion.identity);
         TopoWhackerProjectile projectile = projectileGO.GetComponent<TopoWhackerProjectile>();
@@ -42,7 +42,7 @@ public class MainState : BaseState<Whacker>
         whacker.gameObject.transform.localEulerAngles = new Vector3(0, 0, rotVal);
 
        // Time
-        t += Time.deltaTime;
+        t += Time.fixedDeltaTime;
         if (t > 2f) {
             whacker.stateMachine.ChangeState(new EntityStates.TopoWhacker.IdleState());
         }

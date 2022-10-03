@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2612539136522783764}
   - component: {fileID: 989576625495418195}
   - component: {fileID: 5956862279459318566}
+  - component: {fileID: 2337734622004393358}
   m_Layer: 0
   m_Name: tree2
   m_TagString: Untagged
@@ -88,7 +89,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &2612539136522783764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +146,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   windIntensity: 1
   IKTarget: {fileID: 7143431798499504775}
+--- !u!114 &2337734622004393358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987863359831931984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ef190dbce0db9448933eff2c8254b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3174794694828638949
 GameObject:
   m_ObjectHideFlags: 0

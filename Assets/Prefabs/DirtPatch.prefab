@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8570664461282154295}
   - component: {fileID: 8570664461282154292}
   - component: {fileID: 8570664461282154294}
+  - component: {fileID: -1414560539445150141}
   m_Layer: 0
   m_Name: DirtPatch
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 91ed8db442ec2744fb3c74f0a26d1738, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8a38ab61ef27a424aa11929157ac13e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,7 +85,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &8570664461282154294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,3 +108,15 @@ MonoBehaviour:
   maxSize: 1.2
   color1: {r: 1, g: 1, b: 1, a: 1}
   color2: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
+--- !u!114 &-1414560539445150141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8570664461282154293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ef190dbce0db9448933eff2c8254b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

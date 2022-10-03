@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     private float waveTime = 0;
     private int wave = 0;
 
+    private int maxWeeds = 200;
+
     [SerializeField]
     private TMPro.TMP_Text uiTimeText;
     [SerializeField]
@@ -48,14 +50,14 @@ public class GameManager : MonoBehaviour
         if (isPlaying) {
             HandleWave();
             gameTime += Time.deltaTime;
-            uiTimeText.SetText($"Time: {gameTime}");
+            uiTimeText.SetText($"Time: {Mathf.FloorToInt(gameTime)} s");
 
             // Count weeds
             GameObject[] weeds = GameObject.FindGameObjectsWithTag("Weed");
-            if (weeds.Length > 50) {
+            if (weeds.Length > maxWeeds) {
                 Lose();
             }
-            uiWeedCountText.SetText($"Weeds: {weeds.Length} / 50");
+            uiWeedCountText.SetText($"Weeds: {weeds.Length} / {maxWeeds}");
         }
     }
 
@@ -85,15 +87,14 @@ public class GameManager : MonoBehaviour
 
     public Vector3 GetRandomEnemySpawn() {
         // Find a location for an enemy to spawn
-        float x = UnityEngine.Random.Range(-50f, 50f);
+        float x = UnityEngine.Random.Range(-25f, 25f);
         float y = UnityEngine.Random.Range(-25f, 25f);
         return new Vector3(x, y, 0);
     }
 
     public Vector3 GetRandomLocation() {
-        // Find a location for an enemy to spawn
-        float x = UnityEngine.Random.Range(-40f, 40f);
-        float y = UnityEngine.Random.Range(-15f, 15f);
+        float x = UnityEngine.Random.Range(-20f, 20f);
+        float y = UnityEngine.Random.Range(-20f, 20f);
         return new Vector3(x, y, 0);
     }
 

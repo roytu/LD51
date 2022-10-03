@@ -31,7 +31,7 @@ Transform:
   - {fileID: 6523603859736810558}
   m_Father: {fileID: 1019685828258424085}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89.368}
 --- !u!1 &1018294177117934608
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 2054460124994334751}
   - component: {fileID: 497676147863482199}
   - component: {fileID: 929722515651638344}
+  - component: {fileID: 2492593704427580771}
   m_Layer: 0
   m_Name: tree1
   m_TagString: Untagged
@@ -120,7 +121,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &2054460124994334751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +181,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   windIntensity: 1
   IKTarget: {fileID: 4255187898114420323}
+--- !u!114 &2492593704427580771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018294177117934608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ef190dbce0db9448933eff2c8254b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2037582665589556038
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +328,7 @@ Transform:
   - {fileID: 7772841152791753908}
   m_Father: {fileID: 4351456004843766456}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.089}
 --- !u!1 &4255187898114420323
 GameObject:
   m_ObjectHideFlags: 0

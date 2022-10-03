@@ -14,6 +14,8 @@ public class Splatter : MonoBehaviour
     private float t = 0;
     private Material mat;
 
+    private Vector3 maxLocalScale;
+
     void Start()
     {
         // Duplicate material
@@ -38,7 +40,7 @@ public class Splatter : MonoBehaviour
         transform.localEulerAngles = new Vector3(0, 0, Random.Range(0f, 360f) * Mathf.Deg2Rad);
 
         // Randomize scale
-        transform.localScale *= Random.Range(0.8f, 1.2f);
+        maxLocalScale = transform.localScale * Random.Range(0.8f, 1.2f);
 
         // Initialize time
         t = 0;
@@ -47,6 +49,9 @@ public class Splatter : MonoBehaviour
     void Update()
     {
         t += Time.deltaTime;
+
+        // Set scale
+        transform.localScale = maxLocalScale * Mathf.Min(t / 0.1f, 1f);
 
         // Darken colors/opacity over time
         float h, s, v;
