@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class CameraManager : MonoBehaviour
 {
@@ -17,10 +19,15 @@ public class CameraManager : MonoBehaviour
 
     private float screenshakeAmt = 0;
     private Camera camera;
+    private Volume volume;
+    private ChromaticAberration chromaticAberration;
 
     void Awake() {
         playerInputActions = new PlayerInputActions();
         camera = GetComponent<Camera>();
+        volume = GetComponent<Volume>();
+
+        volume.profile.TryGet<ChromaticAberration>(out chromaticAberration);
     }
 
     void Start() {
@@ -57,6 +64,11 @@ public class CameraManager : MonoBehaviour
             float zoomInfluence = Logistic(zoomTime);
             float zoomScale = Logistic(zoomTime) / 0.5f + 0.5f;
 
+            // Add chromatic abberation
+            if (chromaticAberration != null) {
+                chromaticAberration.intensity.SetValue(new ClampedFloatParameter(zoomInfluence * 0.5f, 0f, 1f));
+            }
+
             Vector2 combinedPosition = Lerp(followPosition, zoomTargetPosition, zoomInfluence);
             //followPosition = (followPosition * 7f + combinedPosition) / 8f;
             followPosition = combinedPosition;
@@ -67,6 +79,8 @@ public class CameraManager : MonoBehaviour
                 Random.Range(-screenshakeAmt / 2, screenshakeAmt / 2),
                 Random.Range(-screenshakeAmt / 2, screenshakeAmt / 2)
             );
+
+
 
             // Assign new position and scale
             transform.position = new Vector3(followPosition.x, followPosition.y, 0) + origDelta;

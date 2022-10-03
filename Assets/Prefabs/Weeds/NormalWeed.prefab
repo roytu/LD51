@@ -119,6 +119,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  audioDeathClips:
+  - {fileID: 8300000, guid: a06801228a1e2fb4d8e80bb0ed889227, type: 3}
+  - {fileID: 8300000, guid: 3b2f624fd0bde2d4892a6cf718113b28, type: 3}
+  - {fileID: 8300000, guid: 69e2671c16fdb7d45b68bae992961c45, type: 3}
+  - {fileID: 8300000, guid: edcee2419708f9a458f18675604c3cd0, type: 3}
 --- !u!50 &1741063197
 Rigidbody2D:
   serializedVersion: 4

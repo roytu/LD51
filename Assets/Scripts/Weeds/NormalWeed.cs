@@ -18,7 +18,7 @@ public class NormalWeed : Weed
 
     public override void SetInitialHealth()
     {
-        health = 3;
+        health = 1;
     }
 
     public override void OnNewWave() {
@@ -26,4 +26,5 @@ public class NormalWeed : Weed
 
         stateMachine.Configure(this, new EntityStates.NormalWeed.MitosisState());
     }
+
 }

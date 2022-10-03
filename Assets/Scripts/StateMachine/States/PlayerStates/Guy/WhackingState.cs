@@ -16,7 +16,7 @@ public class WhackingState : PlayerBaseState
 
     public override void Execute(Player player) {
         t += Time.deltaTime;
-        if (t > 0.5f) {
+        if (t > 0.1f) {
             player.stateMachine.ChangeState(new EntityStates.Guy.MainState());
         }
     }

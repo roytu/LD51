@@ -63,7 +63,7 @@ public class Splatter : MonoBehaviour
         mat.color = color;
 
         // Lifetime control
-        if (t > 100) {
+        if (t > 30f) {
             Destroy(gameObject);
         }
         

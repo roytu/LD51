@@ -28,8 +28,12 @@ public class GameManager : MonoBehaviour
 
     private bool isPlaying = true;
 
+    private PlayerInputActions inputActions;
+
     void Start()
     {
+        inputActions = new PlayerInputActions();
+
         // Give the player a starting whacker
         GameObject defaultWhackerGO = Instantiate<GameObject>(PrefabsManager.getInstance().topoWhackerPrefab, Vector3.zero, Quaternion.identity);
         Whacker defaultWhacker = defaultWhackerGO.GetComponent<Whacker>();
@@ -50,7 +54,7 @@ public class GameManager : MonoBehaviour
         if (isPlaying) {
             HandleWave();
             gameTime += Time.deltaTime;
-            uiTimeText.SetText($"Time: {Mathf.FloorToInt(gameTime)} s");
+            uiTimeText.SetText($"Time: {Mathf.FloorToInt(gameTime)}");
 
             // Count weeds
             GameObject[] weeds = GameObject.FindGameObjectsWithTag("Weed");
@@ -58,6 +62,10 @@ public class GameManager : MonoBehaviour
                 Lose();
             }
             uiWeedCountText.SetText($"Weeds: {weeds.Length} / {maxWeeds}");
+
+            if (inputActions.Player.Escape.WasPressedThisFrame()) {
+                Lose();
+            }
         }
     }
 
