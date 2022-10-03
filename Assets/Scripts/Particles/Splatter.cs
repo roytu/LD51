@@ -34,6 +34,12 @@ public class Splatter : MonoBehaviour
         mat.color = origColor;
         mat.mainTexture = splatterTex;
 
+        // Randomize rotation
+        transform.localEulerAngles = new Vector3(0, 0, Random.Range(0f, 360f) * Mathf.Deg2Rad);
+
+        // Randomize scale
+        transform.localScale *= Random.Range(0.8f, 1.2f);
+
         // Initialize time
         t = 0;
     }

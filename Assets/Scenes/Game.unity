@@ -256,6 +256,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dirtPatchPrefab: {fileID: 8570664461282154293, guid: 9c9b1b9ed24670547892809f87430939, type: 3}
+  treePrefab: {fileID: 8570664461282154293, guid: 60a5cfa95b4a3444f8747debda4fa174, type: 3}
+  fishTreePrefab: {fileID: 8570664461282154293, guid: 8c4f6c92e007b124a835c63d5d93c087, type: 3}
   normalWhackerPrefab: {fileID: 4903772089008332933, guid: 6bd67b036e8327c4098aa067f6b8f5ff, type: 3}
   normalWhackerHitboxPrefab: {fileID: 5242829160449573217, guid: f04a1ccb8780b0448a17c0e35984796b, type: 3}
   topoWhackerPrefab: {fileID: 4903772089008332933, guid: b2d9be7fd68849e47b8661b4edfb7cbb, type: 3}
@@ -1327,6 +1329,7 @@ GameObject:
   - component: {fileID: 1242701513}
   - component: {fileID: 1242701514}
   - component: {fileID: 1242701515}
+  - component: {fileID: 1242701516}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1506,6 +1509,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.7400527, y: 4.0214467}
   m_Direction: 0
+--- !u!114 &1242701516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242701508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ef190dbce0db9448933eff2c8254b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1275656457
 GameObject:
   m_ObjectHideFlags: 0

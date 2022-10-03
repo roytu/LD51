@@ -8,6 +8,7 @@ public class EnvironmentSpawner : MonoBehaviour
     void Start()
     {
         MakeRandomDirtPatches();
+        MakeRandomTrees();
     }
 
     void MakeRandomDirtPatches() {
@@ -19,4 +20,22 @@ public class EnvironmentSpawner : MonoBehaviour
             dirtPatch.transform.localPosition = new Vector3(x, y, 0);
         }
     }
+
+    void MakeRandomTrees() {
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        for (int i = 0; i < 1000; i++) {
+            Vector2 pos = gameManager.GetRandomLocation() * 3;
+            GameObject tree = Instantiate<GameObject>(PrefabsManager.getInstance().treePrefab, Vector3.zero, Quaternion.identity);
+            tree.transform.SetParent(transform);
+            tree.transform.localPosition = new Vector3(pos.x, pos.y, 0);
+        }
+
+        for (int i = 0; i < 100; i++) {
+            Vector2 pos = gameManager.GetRandomLocation() * 3;
+            GameObject fishTree = Instantiate<GameObject>(PrefabsManager.getInstance().fishTreePrefab, Vector3.zero, Quaternion.identity);
+            fishTree.transform.SetParent(transform);
+            fishTree.transform.localPosition = new Vector3(pos.x, pos.y, 0);
+        }
+    }
+
 }
