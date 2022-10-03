@@ -256,7 +256,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dirtPatchPrefab: {fileID: 8570664461282154293, guid: 9c9b1b9ed24670547892809f87430939, type: 3}
-  treePrefab: {fileID: 8570664461282154293, guid: 60a5cfa95b4a3444f8747debda4fa174, type: 3}
+  treePrefabs:
+  - {fileID: 1018294177117934608, guid: 04b10df7962487041ac7ba38e1914d9e, type: 3}
+  - {fileID: 987863359831931984, guid: e2735c4650a0aef42b0054c334a26b28, type: 3}
+  - {fileID: 88780572884946923, guid: 2e5095c29d2b4774cbdb670789cd478b, type: 3}
   fishTreePrefab: {fileID: 8570664461282154293, guid: 8c4f6c92e007b124a835c63d5d93c087, type: 3}
   normalWhackerPrefab: {fileID: 4903772089008332933, guid: 6bd67b036e8327c4098aa067f6b8f5ff, type: 3}
   normalWhackerHitboxPrefab: {fileID: 5242829160449573217, guid: f04a1ccb8780b0448a17c0e35984796b, type: 3}
@@ -452,7 +455,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 1971268c9fc7c4249bf18c6ee416d619, type: 3}
     - target: {fileID: 2149232217848086319, guid: 5b68ef0aa5059584f8faea3c4b3ef19e, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2149232217848086319, guid: 5b68ef0aa5059584f8faea3c4b3ef19e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2586,7 +2589,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2128872590
 MonoBehaviour:

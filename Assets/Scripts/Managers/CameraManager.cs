@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 public class CameraManager : MonoBehaviour
 {
     private GameObject followTarget;
-    private Vector2 zoomTargetPosition;
-    private float zoomTime;
+    public Vector2 zoomTargetPosition;
+    public float zoomTime;
 
     private Vector3 origDelta;
     private float origScale;

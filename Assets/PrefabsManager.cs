@@ -5,7 +5,7 @@ using UnityEngine;
 public class PrefabsManager : MonoBehaviour
 {
     public GameObject dirtPatchPrefab;
-    public GameObject treePrefab;
+    public GameObject[] treePrefabs;
     public GameObject fishTreePrefab;
     public GameObject normalWhackerPrefab;
     public GameObject normalWhackerHitboxPrefab;

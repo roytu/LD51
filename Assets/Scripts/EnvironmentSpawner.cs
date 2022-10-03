@@ -23,9 +23,11 @@ public class EnvironmentSpawner : MonoBehaviour
 
     void MakeRandomTrees() {
         GameManager gameManager = FindObjectOfType<GameManager>();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             Vector2 pos = gameManager.GetRandomLocation() * 3;
-            GameObject tree = Instantiate<GameObject>(PrefabsManager.getInstance().treePrefab, Vector3.zero, Quaternion.identity);
+            GameObject[] treePrefabs = PrefabsManager.getInstance().treePrefabs;
+            GameObject treePrefab = treePrefabs[(int)Random.Range(0, treePrefabs.Length)];
+            GameObject tree = Instantiate<GameObject>(treePrefab, Vector3.zero, Quaternion.identity);
             tree.transform.SetParent(transform);
             tree.transform.localPosition = new Vector3(pos.x, pos.y, 0);
         }
