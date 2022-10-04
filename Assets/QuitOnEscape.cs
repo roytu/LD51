@@ -6,16 +6,23 @@ using UnityEngine.InputSystem;
 public class QuitOnEscape : MonoBehaviour
 {
     private PlayerInputActions inputActions;
+    private InputAction escapeAction;
 
     void Awake()
     {
         inputActions = new PlayerInputActions();
+        escapeAction = inputActions.Player.Escape;
+        escapeAction.performed += _ => Application.Quit();
     }
 
-    void Update()
-    {
-        if (inputActions.Player.Escape.WasPressedThisFrame()) {
-            Application.Quit();
-        }
+    void OnEnable() {
+        escapeAction.Enable();
     }
+
+    void OnDisable() {
+        escapeAction.Disable();
+    }
+
+
+
 }

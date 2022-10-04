@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
@@ -29,6 +30,21 @@ public class GameManager : MonoBehaviour
     private bool isPlaying = true;
 
     private PlayerInputActions inputActions;
+    private InputAction escapeAction;
+
+    void Awake() {
+        inputActions = new PlayerInputActions();
+        escapeAction = inputActions.Player.Escape;
+        escapeAction.performed += _ => Lose();
+    }
+
+    void OnEnable() {
+        escapeAction.Enable();
+    }
+
+    void OnDisable() {
+        escapeAction.Disable();
+    }
 
     void Start()
     {
@@ -62,10 +78,6 @@ public class GameManager : MonoBehaviour
                 Lose();
             }
             uiWeedCountText.SetText($"Weeds: {weeds.Length} / {maxWeeds}");
-
-            if (inputActions.Player.Escape.WasPressedThisFrame()) {
-                Lose();
-            }
         }
     }
 
